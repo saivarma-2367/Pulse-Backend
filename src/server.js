@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -15,9 +16,7 @@ app.get("/", (req, res) => {
   res.send("Pulse API is running");
 });
 
-app.use("/api/auth", (req, res) => {
-  res.json({ message: "Auth route works" });
-});
+app.use("/api/auth",authRoutes);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
